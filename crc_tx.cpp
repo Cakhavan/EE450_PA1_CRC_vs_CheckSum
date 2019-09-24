@@ -1,6 +1,5 @@
 #include <iostream>
 #include <fstream> 
-#include <sstream>
 #include <string> 
 using namespace std;
 
@@ -28,40 +27,43 @@ int main ()
     while(getline(infile, buff)){
 
         data = buff.substr(0, buff.find(' '));
-        generator = buff.substr(buff.find(' '), buff.length());
+        generator = buff.substr(buff.find(' ') + 1, buff.length());
         n = data.length();
         r = generator.length();
-        cout << "data string: " << data << endl;
-        cout << "data int: " << endl;
-        int d[data.length()],gen[generator.length()];
-        for(int i = 0; i < data.length(); i++){
-            d[i] = (int)data[i];
+        cout << "n is " << n << " and r is " << r << endl;
+        // cout << "data string: " << data << endl;
+        cout << "data int: ";
+        int d[data.length() + r],gen[generator.length()];
+        for(int i = 0; i < n; i++){
+            d[i] = (int)(data[i] - '0');
             cout << d[i];
         }
         cout << endl;
 
-        cout << "generator string: " << generator << endl;
-        cout << "generator int: " << endl;
-        for(int i = 0; i < generator.length(); i++){
-            gen[i] = (int)generator[i];
+        // cout << "generator string: " << generator << endl;
+        cout << "generator int: ";
+        for(int i = 0; i < r; i++){
+            gen[i] = (int)(generator[i] - '0');
             cout << gen[i];
         }
         cout << endl;
 
-        
-        int temp[data.length()];
-        for(int i=0; i < n+r ;i++){
+        for(int i=0;i<r;i++){
+            d[n+i] = 0;
+        }
+        int temp[n+r];   
+        for(int i=0;i<n+r;i++){
             temp[i] = d[i];
         }
-        
-        division(d,gen,n,r);
+            
+        division(temp,gen,n,r);
         cout<<"CRC : ";
         for(int i=0;i<r;i++)
         {
-            cout<<temp[n+i]<<" ";
             d[n+i] = temp[n+i];
+            cout<<d[n+i];
         }
-
+        cout << endl;
             }
     infile.close();
     return 0;
