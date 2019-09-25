@@ -30,6 +30,7 @@ int main ()
         generator = buff.substr(buff.find(' ') + 1, buff.length());
         n = data.length();
         r = generator.length();
+        int temp[n+r]; 
         cout << "n is " << n << " and r is " << r << endl;
         // cout << "data string: " << data << endl;
         cout << "data int: ";
@@ -47,11 +48,12 @@ int main ()
             cout << gen[i];
         }
         cout << endl;
+        r--;
 
         for(int i=0;i<r;i++){
             d[n+i] = 0;
         }
-        int temp[n+r];   
+         
         for(int i=0;i<n+r;i++){
             temp[i] = d[i];
         }
